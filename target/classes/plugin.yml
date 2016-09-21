@@ -1,0 +1,14 @@
+name: MyChestCmd
+main: com.github.smk7758.MyChestCmd.Main
+version: 0.0.2
+author: smk7758
+permissions:
+commands:
+  MyChestCmd:
+    description: MyChestCmd.
+    permission-message: You don't have <permission>
+    aliases: mcc
+  MyChestCmdEnder:
+    description: MyChestCmd.
+    permission-message: You don't have <permission>
+    aliases: emcc, mcce
