@@ -29,7 +29,7 @@ public class CommandExcuter implements CommandExecutor {
 				Player player = (Player) sender;
 				Inventory inv = null;
 				if (!plugin.inv_player.containsKey(player.getName()) || plugin.inv_player == null) {
-					inv = Bukkit.createInventory(null, 27, player.getName() + "'s MyChest"); // Invの作成
+					inv = Bukkit.createInventory(null, 27, player.getName() + "'s MyChest"); // Invの作成。
 					if (plugin.getConfig().contains("InventoryContents." + player.getName())) {
 						ItemStack[] inx = new ItemStack[27];
 						for (int i = 0; i < 26; i++) {
@@ -42,7 +42,7 @@ public class CommandExcuter implements CommandExecutor {
 					inv = plugin.inv_player.get(player.getName()); // Invを持ってくる。
 				}
 				player.openInventory(inv);
-				inv = player.getOpenInventory().getTopInventory(); // ここよくわかってない←
+				inv = player.getOpenInventory().getTopInventory(); // なぜかコレで取得出来た。
 				plugin.inv_player.put(player.getName(), inv);
 				return true;
 			}
