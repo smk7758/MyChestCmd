@@ -1,6 +1,6 @@
 name: MyChestCmd
 main: com.github.smk7758.MyChestCmd.Main
-version: 0.0.2
+version: 0.0.3
 author: smk7758
 permissions:
 commands:
