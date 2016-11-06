@@ -3,12 +3,52 @@ main: com.github.smk7758.MyChestCmd.Main
 version: 0.0.3
 author: smk7758
 permissions:
+  MyChestCmd.*:
+    description: Gives the user access to all command.
+    children:
+      MyChestCmd.reload: true
+      MyChestCmd.debug: true
+      MyChestCmd.list: true
+      MyChestCmd.delete: true
+      MyChestCmd.make: true
+      MyChestCmd.Chest: true
+    default: false
+  MyChestCmd.reload:
+    description: Gives the user access to MyChestCmd reload command.
+    default: false
+  MyChestCmd.debug:
+    description: Gives the user access to MyChestCmd debug command.
+    default: false
+  MyChestCmd.list:
+    description: Gives the user access to ListChest command.
+    default: false
+  MyChestCmd.delete:
+    description: Gives the user access to DeleteChest command.
+    default: false
+  MyChestCmd.make:
+    description: Gives the user access to SetChest command.
+    default: false
+  MyChestCmd.chest:
+    description: Gives the user access to Chest command.
+    default: false
 commands:
   MyChestCmd:
     description: MyChestCmd.
-    permission-message: You don't have <permission>
     aliases: mcc
   MyChestCmdEnder:
     description: MyChestCmd.
-    permission-message: You don't have <permission>
     aliases: emcc, mcce
+  Chest:
+    description: MyChestCmd.
+  MyChestCmd:
+    description: MyChestCmd.
+    aliases: mcc
+  MakeChest:
+    description: MyChestCmd.
+    aliases: chestmake
+  DeleteChest:
+    description: MyChestCmd.
+    aliases: chestdelete, delChest, Chestdel
+  ListChest:
+    description: MyChestCmd.
+    aliases: chestlist
