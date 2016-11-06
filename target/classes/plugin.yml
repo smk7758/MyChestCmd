@@ -1,6 +1,6 @@
 name: MyChestCmd
 main: com.github.smk7758.MyChestCmd.Main
-version: 0.0.3
+version: 0.0.4
 author: smk7758
 permissions:
   MyChestCmd.*:
@@ -8,10 +8,12 @@ permissions:
     children:
       MyChestCmd.reload: true
       MyChestCmd.debug: true
-      MyChestCmd.list: true
-      MyChestCmd.delete: true
+      MyHomeCmd.show_all_list
+      MyChestCmd.chest: true
       MyChestCmd.make: true
-      MyChestCmd.Chest: true
+      MyChestCmd.delete: true
+      MyChestCmd.list: true
+      MyChestCmd.ender
     default: false
   MyChestCmd.reload:
     description: Gives the user access to MyChestCmd reload command.
@@ -19,25 +21,28 @@ permissions:
   MyChestCmd.debug:
     description: Gives the user access to MyChestCmd debug command.
     default: false
-  MyChestCmd.list:
-    description: Gives the user access to ListChest command.
+  MyChestCmd.show_all_list:
+    description: Gives the user access to MyChestCmd show_all_list command.
+    default: false
+  MyChestCmd.chest:
+    description: Gives the user access to Chest command.
+    default: false
+  MyChestCmd.make:
+    description: Gives the user access to MakeChest command.
     default: false
   MyChestCmd.delete:
     description: Gives the user access to DeleteChest command.
     default: false
-  MyChestCmd.make:
-    description: Gives the user access to SetChest command.
+  MyChestCmd.list:
+    description: Gives the user access to ListChest command.
     default: false
-  MyChestCmd.chest:
-    description: Gives the user access to Chest command.
+  MyChestCmd.ender:
+    description: Gives the user access to MyChestCmdEnder command.
     default: false
 commands:
   MyChestCmd:
     description: MyChestCmd.
     aliases: mcc
-  MyChestCmdEnder:
-    description: MyChestCmd.
-    aliases: emcc, mcce
   Chest:
     description: MyChestCmd.
   MyChestCmd:
@@ -52,3 +57,6 @@ commands:
   ListChest:
     description: MyChestCmd.
     aliases: chestlist
+  MyChestCmdEnder:
+    description: MyChestCmd.
+    aliases: emcc, mcce

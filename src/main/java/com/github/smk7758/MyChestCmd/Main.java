@@ -28,7 +28,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("MakeChest").setExecutor(new CommandExcuter(this));
 		getCommand("DeleteChest").setExecutor(new CommandExcuter(this));
 		getCommand("ListChest").setExecutor(new CommandExcuter(this));
-//		getCommand("MyChestCmdEnder").setExecutor(new CommandExcuter(this));
+		getCommand("MyChestCmdEnder").setExecutor(new CommandExcuter(this));
 		saveDefaultConfig();
 		reloadConfig();
 		DebugMode = getConfig().getBoolean("DebugMode"); //ãNìÆéûÇÃDebugModeÅB

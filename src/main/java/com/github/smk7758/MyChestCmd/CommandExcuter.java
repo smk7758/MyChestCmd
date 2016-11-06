@@ -51,12 +51,26 @@ public class CommandExcuter implements CommandExecutor {
 					plugin.cLog.sendMessage(sender, "This is a check. DebugMode is true.", 3);
 					return true;
 				}
+				if (args[0].equalsIgnoreCase("show_all_list")) {
+					if (!(sender instanceof Player) && !sender.hasPermission("MyChestCmd.show_all_list")) {
+						plugin.cLog.sendPermissionErrorMessage(sender, "MyChestCmd.show_all_list");
+						return false;
+					}
+					plugin.cLog.sendMessage(sender, "<ChestList>", 0);
+					for (String path : plugin.inv_player.keySet()) { //HashMapより。
+							plugin.cLog.sendMessage(sender, path, 0);
+					}
+					for (String name : plugin.getConfig().getConfigurationSection("InventoryContents").getKeys(true)) {
+						plugin.cLog.sendMessage(sender, name, 0);
+					}
+					return true;
+				}
 			}
 			sendCommandList(sender);
 		}
 		if (cmd.getName().equalsIgnoreCase("Chest")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage("Must send from Player.");
+				plugin.cLog.sendMessage(sender, "Must send from Player.", 2);
 				return false;
 			}
 			Player player = (Player) sender;
@@ -96,18 +110,9 @@ public class CommandExcuter implements CommandExecutor {
 				return true;
 			}
 		}
-//		if (cmd.getName().equalsIgnoreCase("MyChestCmdEnder")) {
-//			if (sender instanceof Player) {
-//				Player p = (Player) sender;
-//				p.openInventory(p.getEnderChest());
-//				return true;
-//			} else {
-//				sender.sendMessage("Must send from Player.");
-//			}
-//		}
 		if (cmd.getName().equalsIgnoreCase("MakeChest")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage("Must send from Player.");
+				plugin.cLog.sendMessage(sender, "Must send from Player.", 2);
 				return false;
 			}
 			Player player = (Player) sender;
@@ -138,7 +143,7 @@ public class CommandExcuter implements CommandExecutor {
 		}
 		if (cmd.getName().equalsIgnoreCase("DeleteChest")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage("Must send from Player.");
+				plugin.cLog.sendMessage(sender, "Must send from Player.", 2);
 				return false;
 			}
 			Player player = (Player) sender;
@@ -170,7 +175,7 @@ public class CommandExcuter implements CommandExecutor {
 		}
 		if (cmd.getName().equalsIgnoreCase("ListChest")) {
 			if (!(sender instanceof Player)) {
-				sender.sendMessage("Must send from Player.");
+				plugin.cLog.sendMessage(sender, "Must send from Player.", 2);
 				return false;
 			}
 			Player player = (Player) sender;
@@ -178,20 +183,32 @@ public class CommandExcuter implements CommandExecutor {
 				plugin.cLog.sendPermissionErrorMessage(sender, "MyChestCmd.list");
 				return false;
 			}
-			if (args.length == 0) {
-				plugin.cLog.sendMessage(sender, "<Chest List>", 0);
-				for (String path : plugin.inv_player.keySet()) { //HashMapより。
-					plugin.cLog.sendMessage(sender, path, 3);
-					if (player.getName().equals(path.split("\\.")[1])) {
-						plugin.cLog.sendMessage(sender, path.split("\\.")[1], 0);
-					}
+			plugin.cLog.sendMessage(sender, "<ChestList>", 0);
+			for (String path : plugin.inv_player.keySet()) { //HashMapより。
+				plugin.cLog.sendMessage(sender, path, 3);
+				if (player.getName().equals(path.split("\\.")[1])) {
+					plugin.cLog.sendMessage(sender, path.split("\\.")[2], 0);
 				}
-				if (plugin.getConfig().contains("InventoryContents." + player.getName())) { //Configより。
-					for (String name : plugin.getConfig().getConfigurationSection(player.getName()).getKeys(false)) {
-						plugin.cLog.sendMessage(sender, name, 0);
-					}
+			}
+			String path_ = "InventoryContents." + player.getName();
+			if (plugin.getConfig().contains(path_)) { //Configより。
+				for (String name : plugin.getConfig().getConfigurationSection(path_).getKeys(false)) {
+					plugin.cLog.sendMessage(sender, name, 0);
 				}
-				return true;
+			}
+			return true;
+		}
+		if (cmd.getName().equalsIgnoreCase("MyChestCmdEnder")) { //手抜き感。
+			if (sender instanceof Player) {
+				if (sender.hasPermission("MyChestCmd.ender")) {
+					Player player = (Player) sender;
+					player.openInventory(player.getEnderChest());
+					return true;
+				} else {
+					plugin.cLog.sendPermissionErrorMessage(sender, "MyChestCmd.ender");
+				}
+			} else {
+				plugin.cLog.sendMessage(sender, "Must send from Player.", 2);
 			}
 		}
 		return false;
