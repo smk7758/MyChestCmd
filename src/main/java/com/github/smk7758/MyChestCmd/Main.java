@@ -44,7 +44,7 @@ public class Main extends JavaPlugin implements Listener {
 			int counter = 0;
 			for (ItemStack item : inv_player.get(path).getContents()) {
 				if (getConfig().contains(path + "." + counter)) {
-					getConfig().set(path, null); //“äB
+					getConfig().set(path, null); //’l‚ÌíœB
 				}
 				if (item != null && item.getType() != Material.AIR) {
 					getConfig().set(path + "." + counter, item);
